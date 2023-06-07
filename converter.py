@@ -1,4 +1,9 @@
 import argparse
+import json
+import yaml
+import xml.etree.ElementTree as ET
+import xmltodict
+import xml.dom.minidom
 
 parser = argparse.ArgumentParser(description='Konwerter plików json, xml, yaml')
 parser.add_argument('input_file', help='Ścieżka do pliku wejściowego')
@@ -16,6 +21,14 @@ if input_file.endswith('.json'):
             data = json.load(j)
         except json.JSONDecodeError as e:
             print("Błąd w parsowaniu pliku JSON: ", e)
+            exit(1)
+
+elif input_file.endswith('.yml') or input_file.endswith('.yaml'):
+    with open(input_file, 'r') as y:
+        try:
+            data = yaml.safe_load(y)
+        except yaml.YAMLError as e:
+            print("Błąd w parsowaniu pliku YAML: ", e)
             exit(1)
 
 # -----
