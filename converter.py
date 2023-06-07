@@ -35,3 +35,7 @@ elif input_file.endswith('.yml') or input_file.endswith('.yaml'):
 if format == "json":
     with open(output_file, 'w') as j:
         json.dump(data, j, indent=4, sort_keys=True)
+
+elif format == "yml" or format == "yaml":
+    with open(output_file, 'w') as y:
+        yaml.dump(data, y, default_flow_style=False)
