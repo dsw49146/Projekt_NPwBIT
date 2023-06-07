@@ -31,6 +31,17 @@ elif input_file.endswith('.yml') or input_file.endswith('.yaml'):
             print("Błąd w parsowaniu pliku YAML: ", e)
             exit(1)
 
+elif input_file.endswith('.xml'):
+    with open(input_file, 'r') as f:
+        xml_data = f.read()
+        try:
+            data = xmltodict.parse(xml_data)
+        except Exception as e:
+            print(f'Błąd odczytu pliku XML: {e}')
+            exit(1)
+else:
+    print("Nieobsługiwany format pliku wejściowego: ", input_file)
+    exit(1)
 # -----
 if format == "json":
     with open(output_file, 'w') as j:
