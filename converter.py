@@ -19,3 +19,6 @@ if input_file.endswith('.json'):
             exit(1)
 
 # -----
+if format == "json":
+    with open(output_file, 'w') as j:
+        json.dump(data, j, indent=4, sort_keys=True)
